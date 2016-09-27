@@ -1,0 +1,53 @@
+pbspro-meta (14.1.0-9+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest pbspro
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 26 Sep 2016 11:30:00 +0100
+ 
+pbspro-meta (14.1.0-8+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest pbspro
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 19 Sep 2016 11:30:00 +0100
+ 
+pbspro-meta (14.1.0-7+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest pbspro
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 14 Sep 2016 11:30:00 +0100
+ 
+pbspro-meta (14.1.0-6+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest pbspro
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Sep, 6 Sep 2016 11:30:00 +0100
+ 
+pbspro-meta (14.1.0-5+DEBIAN_VERSION) unstable; urgency=low
+
+  * Use dedicated job attribute for job host
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 24 Jul 2016 11:30:00 +0100
+ 
+pbspro-meta (14.1.0-4+DEBIAN_VERSION) unstable; urgency=low
+
+  * Fixes for kerberos
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 24 Jul 2016 11:30:00 +0100
+ 
+pbspro-meta (14.1.0-3+DEBIAN_VERSION) unstable; urgency=low
+
+  * kerberos access features
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 23 Jul 2016 11:30:00 +0100
+ 
+pbspro-meta (14.1.0-2+DEBIAN_VERSION) unstable; urgency=low
+
+  * kerberos support
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 19 Jul 2016 11:30:00 +0100
+ 
+pbspro-meta (14.1.0-1+DEBIAN_VERSION) unstable; urgency=low
+
+  * init packages
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 5 Jul 2016 11:30:00 +0100
