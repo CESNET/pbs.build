@@ -12,9 +12,9 @@ DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 DEB_VERSION ?= $(shell cat /etc/debian_version | cut -d. -f1 )
 
-CFLAGS += -std=gnu99 -D_GNU_SOURCE -D__STDC_FORMAT_MACROS
+CFLAGS += -std=gnu99 -g -D_GNU_SOURCE -D__STDC_FORMAT_MACROS
 CFLAGS += -D__TOLDGROUP -D__STDC_FORMAT_MACROS
-CXXFLAGS += -std=c++0x -D_GNU_SOURCE -D__STDC_FORMAT_MACROS
+CXXFLAGS += -std=c++0x -g -D_GNU_SOURCE -D__STDC_FORMAT_MACROS
 
 ifeq ($(DEB_VERSION), 7)
 OPTIONS = CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" \
