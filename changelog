@@ -1,3 +1,9 @@
+pbspro-meta (14.1.0-11+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest pbspro
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 13 Oct 2016 11:30:00 +0100
+ 
 pbspro-meta (14.1.0-10+DEBIAN_VERSION) unstable; urgency=low
 
   * merge latest pbspro
