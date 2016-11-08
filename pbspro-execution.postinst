@@ -1,3 +1,5 @@
 #!/bin/bash
 
-. /usr/libexec/pbs_postinstall execution
+/usr/libexec/pbs_postinstall execution
+
+#DEBHELPER#

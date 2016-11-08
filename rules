@@ -195,6 +195,7 @@ binary-arch: install
 #	dh_installlogrotate	
 	dh_installinit -p pbspro-execution --init-script=pbs -r --no-start
 	dh_installinit -p pbspro-server --init-script=pbs --no-start
+	dh_systemd_enable --name pbs
 	dh_installcron
 #	dh_installinfo
 	dh_lintian
