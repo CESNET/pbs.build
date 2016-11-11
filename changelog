@@ -1,3 +1,16 @@
+pbspro-meta (14.0.1-14+DEBIAN_VERSION) unstable; urgency=low
+
+  * pbsdsh fix
+  * merge latest pbspro  
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 11 Nov 2016 11:30:00 +0100
+ 
+pbspro-meta (14.0.1-13+DEBIAN_VERSION) unstable; urgency=low
+
+  * hook_output.env initialization fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 9 Nov 2016 11:30:00 +0100
+ 
 pbspro-meta (14.0.1-12+DEBIAN_VERSION) unstable; urgency=low
 
   * merge latest pbspro
