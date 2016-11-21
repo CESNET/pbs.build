@@ -161,6 +161,7 @@ install: build
 	rm -rf debian/libpbspro/usr/unsupported/
 	
 	cp debian/pbspro-server/usr/sbin/pbs_iff debian/libpbspro/usr/sbin/pbs_iff
+	chmod 4755 debian/libpbspro/usr/sbin/pbs_iff
 
 	dh_install
 	
