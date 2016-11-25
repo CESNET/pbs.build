@@ -134,6 +134,7 @@ install: build
 	rm -rf debian/pbspro-client/usr/sbin/pbs_ds_password.bin
 	rm -rf debian/pbspro-client/usr/sbin/pbs_idled
 	rm -rf debian/pbspro-client/usr/sbin/pbs_mom
+	rm -rf debian/pbspro-client/usr/sbin/momctl
 	rm -rf debian/pbspro-client/usr/sbin/pbs_rcp
 	rm -rf debian/pbspro-client/usr/sbin/pbs_sched
 	rm -rf debian/pbspro-client/usr/sbin/pbs_server

@@ -1,3 +1,12 @@
+pbspro-meta (14.0.1-15+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix double free v req_gssauthenuser()
+  * momctl
+  * safe mom restart
+  * merge latest pbspro  
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 25 Nov 2016 11:30:00 +0100
+ 
 pbspro-meta (14.0.1-14+DEBIAN_VERSION) unstable; urgency=low
 
   * pbsdsh fix
