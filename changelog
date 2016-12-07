@@ -1,3 +1,10 @@
+pbspro-meta (14.0.1-16+DEBIAN_VERSION) unstable; urgency=low
+
+  * call DIS_tcp_setup properly
+  * merge latest pbspro  
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 5 Dec 2016 11:30:00 +0100
+ 
 pbspro-meta (14.0.1-15+DEBIAN_VERSION) unstable; urgency=low
 
   * fix double free v req_gssauthenuser()
