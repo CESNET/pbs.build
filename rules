@@ -17,7 +17,7 @@ CFLAGS += -D__TOLDGROUP -D__STDC_FORMAT_MACROS
 CXXFLAGS += -std=c++0x -g -ggdb -D_GNU_SOURCE -D__STDC_FORMAT_MACROS
 
 ifeq ($(DEB_VERSION), 7)
-OPTIONS = CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" \
+OPTIONS = LDFLAGS="-L/usr/lib/heimdal/" CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" \
           --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
           --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
           --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
