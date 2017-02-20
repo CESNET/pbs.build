@@ -1,3 +1,9 @@
+pbspro-meta (14.0.1-19+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 20 Feb 2017 11:30:00 +0100
+ 
 pbspro-meta (14.0.1-18+DEBIAN_VERSION) unstable; urgency=low
 
   * multiple fairshare tree support
