@@ -1,3 +1,12 @@
+pbspro-meta (14.0.1-20+DEBIAN_VERSION) unstable; urgency=low
+
+  * log task exit value
+  * add pbs.PERIODIC constant
+  * mom restart wait for delete job
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 1 Mar 2017 11:30:00 +0100
+
 pbspro-meta (14.0.1-19+DEBIAN_VERSION) unstable; urgency=low
 
   * merge upstream
