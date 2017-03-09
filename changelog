@@ -1,3 +1,11 @@
+pbspro-meta (14.0.1-21+DEBIAN_VERSION) unstable; urgency=low
+
+  * mom restart improved
+  * job array krb_princ fix #195534
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 9 Mar 2017 11:30:00 +0100
+
 pbspro-meta (14.0.1-20+DEBIAN_VERSION) unstable; urgency=low
 
   * log task exit value
