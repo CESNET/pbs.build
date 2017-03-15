@@ -1,3 +1,10 @@
+pbspro-meta (14.0.1-22+DEBIAN_VERSION) unstable; urgency=low
+
+  * log RESOURCE_KILL
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 15 Mar 2017 11:30:00 +0100
+
+
 pbspro-meta (14.0.1-21+DEBIAN_VERSION) unstable; urgency=low
 
   * mom restart improved
