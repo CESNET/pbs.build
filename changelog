@@ -1,3 +1,11 @@
+pbspro-meta (14.0.1-23+DEBIAN_VERSION) unstable; urgency=low
+
+  * fqdn in resources_available.host
+  * set exec_host2 as a read only attribute
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 27 Mar 2017 11:30:00 +0100
+
 pbspro-meta (14.0.1-22+DEBIAN_VERSION) unstable; urgency=low
 
   * log RESOURCE_KILL
