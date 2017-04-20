@@ -1,3 +1,10 @@
+pbspro-meta (14.0.1-24+DEBIAN_VERSION) unstable; urgency=low
+
+  * new sched attribute only_explicit_psets
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 20 Apr 2017 11:30:00 +0100
+ 
 pbspro-meta (14.0.1-23+DEBIAN_VERSION) unstable; urgency=low
 
   * fqdn in resources_available.host
