@@ -68,8 +68,8 @@ install: build
 	dh_prep
 	dh_installdirs
 	
-	#mkdir -p $(CURDIR)/debian/pbspro
-	#$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro
+	mkdir -p $(CURDIR)/debian/pbspro
+	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro
 
 	cp debian/build/pbspro/src/cmds/scripts/pbs.service debian/pbspro-server.service
 	cp debian/build/pbspro/src/cmds/scripts/pbs.service debian/pbspro-execution.service
@@ -80,14 +80,18 @@ install: build
 
 ######## pbspro-server
 	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro-server
-	chmod 4755 debian/pbspro-server/usr/sbin/pbs_iff
 	chmod 4755 debian/pbspro-server/usr/sbin/pbs_rcp
 	rm -rf debian/pbspro-server/usr/unsupported/*.pyc
 	rm -rf debian/pbspro-server/usr/unsupported/*.pyo
 
+	rm -rf debian/pbspro-server/usr/include
+	rm -rf debian/pbspro-server/usr/lib/*.a
+	rm -rf debian/pbspro-server/usr/lib/*.la
+	rm -rf debian/pbspro-server/usr/lib/libpbs.*
+	rm -rf debian/pbspro-server/usr/sbin/pbs_iff
+
 ######## pbspro-execution
 	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro-execution
-	chmod 4755 debian/pbspro-execution/usr/sbin/pbs_iff
 	chmod 4755 debian/pbspro-execution/usr/sbin/pbs_rcp
 	rm -rf debian/pbspro-execution/usr/bin/printjob_svr.bin
 	rm -rf debian/pbspro-execution/usr/etc/pbs_db_schema.sql
@@ -108,7 +112,13 @@ install: build
 	rm -rf debian/pbspro-execution/usr/sbin/pbs_server.bin
 	rm -rf debian/pbspro-execution/usr/sbin/pbsfs
 	rm -rf debian/pbspro-execution/usr/unsupported/*.pyc
-	rm -rf debian/pbspro-execution/usr/unsupported/*.pyo	
+	rm -rf debian/pbspro-execution/usr/unsupported/*.pyo
+
+	rm -rf debian/pbspro-execution/usr/include
+	rm -rf debian/pbspro-execution/usr/lib/*.a
+	rm -rf debian/pbspro-execution/usr/lib/*.la
+	rm -rf debian/pbspro-execution/usr/lib/libpbs.*
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_iff
 
 ######## pbspro-client
 	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro-client
@@ -148,6 +158,12 @@ install: build
 	rm -rf debian/pbspro-client/usr/unsupported/*.pyc
 	rm -rf debian/pbspro-client/usr/unsupported/*.pyo
 
+	rm -rf debian/pbspro-client/usr/include
+	rm -rf debian/pbspro-client/usr/lib/*.a
+	rm -rf debian/pbspro-client/usr/lib/*.la
+	rm -rf debian/pbspro-client/usr/lib/libpbs.*
+	rm -rf debian/pbspro-client/usr/sbin/pbs_iff
+
 ######## libpbspro
 	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/libpbspro
 	rm -rf debian/libpbspro/etc
@@ -164,8 +180,9 @@ install: build
 	rm -rf debian/libpbspro/usr/sbin/*
 	rm -rf debian/libpbspro/usr/share/
 	rm -rf debian/libpbspro/usr/unsupported/
-	
-	cp debian/pbspro-server/usr/sbin/pbs_iff debian/libpbspro/usr/sbin/pbs_iff
+	rm -rf debian/libpbspro/usr/lib/libpbs.so
+
+	cp debian/pbspro/usr/sbin/pbs_iff debian/libpbspro/usr/sbin/pbs_iff
 	chmod 4755 debian/libpbspro/usr/sbin/pbs_iff
 
 	dh_install
@@ -179,7 +196,6 @@ install: build
 	rm -rf debian/libpbspro-dev/usr/lib/MPI/
 	rm -rf debian/libpbspro-dev/usr/lib/python/
 	rm -rf debian/libpbspro-dev/usr/lib/systemd/
-	rm -rf debian/libpbspro-dev/usr/lib/libpbs.so
 	rm -rf debian/libpbspro-dev/usr/lib/libpbs.so.0
 	rm -rf debian/libpbspro-dev/usr/lib/libpbs.so.0.0.0
 	rm -rf debian/libpbspro-dev/usr/libexec/

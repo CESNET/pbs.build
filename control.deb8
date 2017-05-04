@@ -30,8 +30,8 @@ Homepage: http://pbspro.org/
 Package: pbspro-server
 Section: utils
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, expat, libedit2, postgresql, python, sudo, tcl, tk, libical1a, libpq-dev
-Conflicts: libpbspro, libpbspro-dev, pbspro-execution, pbspro-client, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpbspro, expat, libedit2, postgresql, python, sudo, tcl, tk, libical1a, libpq-dev
+Conflicts: pbspro-execution, pbspro-client, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
 Description: PBS Professional® is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
@@ -43,8 +43,8 @@ Description: PBS Professional® is a fast, powerful workload manager and
 Package: pbspro-execution
 Section: utils
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, expat, python
-Conflicts: libpbspro, libpbspro-dev, pbspro-server, pbspro-client, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpbspro, expat, python
+Conflicts: pbspro-server, pbspro-client, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
 Description: PBS Professional® is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
@@ -57,8 +57,8 @@ Description: PBS Professional® is a fast, powerful workload manager and
 Package: pbspro-client
 Section: utils
 Architecture: any
-Conflicts: libpbspro, libpbspro-dev, pbspro-server, pbspro-execution, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
-Depends: ${shlibs:Depends}, ${misc:Depends}, python
+Conflicts: pbspro-server, pbspro-execution, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpbspro, python
 Description: PBS Professional® is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
@@ -72,7 +72,7 @@ Section: libs
 Provides: libpbspro
 Architecture: any
 Depends: expat, python
-Conflicts: pbspro-server, pbspro-execution, pbspro-client, pbs, pbs-mom, pbs-cmds
+Conflicts: pbs, pbs-mom, pbs-cmds
 Description: PBS Professional® is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
@@ -85,8 +85,8 @@ Package: libpbspro-dev
 Section: libdevel
 Provides: libpbspro-dev
 Architecture: any
-Depends: expat, python
-Conflicts: pbspro-server, pbspro-execution, pbspro-client, pbs, pbs-mom, pbs-cmds
+Depends: libpbspro, expat, python
+Conflicts: pbs, pbs-mom, pbs-cmds
 Description: PBS Professional® is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
