@@ -1,3 +1,12 @@
+pbspro-meta (14.0.1-25+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+  * no enforcement on exclhost
+  * auto add mom to acl
+  * fix lib dependencies
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 9 May 2017 11:30:00 +0100
+ 
 pbspro-meta (14.0.1-24+DEBIAN_VERSION) unstable; urgency=low
 
   * new sched attribute only_explicit_psets
