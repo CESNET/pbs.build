@@ -71,7 +71,7 @@ Package: libpbspro
 Section: libs
 Provides: libpbspro
 Architecture: any
-Depends: expat, python
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: pbs, pbs-mom, pbs-cmds
 Description: PBS Professional® is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
@@ -85,7 +85,7 @@ Package: libpbspro-dev
 Section: libdevel
 Provides: libpbspro-dev
 Architecture: any
-Depends: libpbspro, expat, python
+Depends: libpbspro, heimdal-multidev, ${shlibs:Depends}, ${misc:Depends}
 Conflicts: pbs, pbs-mom, pbs-cmds
 Description: PBS Professional® is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
