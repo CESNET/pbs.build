@@ -1,3 +1,12 @@
+pbspro-meta (14.0.1-28+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+  * add moms to acl is optionable
+  * no rewriting of KRB5CCNAME on sisters
+  * fix pbslibs dependencies
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 18 Jun 2017 11:30:00 +0100
+ 
 pbspro-meta (14.0.1-27+DEBIAN_VERSION) unstable; urgency=low
 
   * auto add moms to acl
