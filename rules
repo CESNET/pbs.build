@@ -30,6 +30,13 @@ OPTIONS = CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" \
           --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
 endif
 
+ifeq ($(DEB_VERSION), 9)
+OPTIONS = CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
