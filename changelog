@@ -1,3 +1,9 @@
+pbspro-meta (17.1.0-3+DEBIAN_VERSION) unstable; urgency=low
+
+  * secure connection fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 15 Sep 2017 11:30:00 +0100
+ 
 pbspro-meta (17.1.0-2+DEBIAN_VERSION) unstable; urgency=low
 
   * merge upstream
