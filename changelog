@@ -1,3 +1,13 @@
+pbspro-meta (17.1.0-4+DEBIAN_VERSION) unstable; urgency=low
+
+  * mom job limit comparison fix
+  * nagative resources support
+  * add get_job_principal prototype #220734
+  * fix attribute "Assigned CPU Count" in momctl
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 2 Oct 2017 11:30:00 +0100
+
 pbspro-meta (17.1.0-3+DEBIAN_VERSION) unstable; urgency=low
 
   * secure connection fix
