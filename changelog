@@ -1,3 +1,11 @@
+pbspro-meta (17.1.0-6+DEBIAN_VERSION) unstable; urgency=low
+
+  * hotfix #225097
+  * libpbspro - exact version dependency
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 3 Nov 2017 11:30:00 +0100
+ 
 pbspro-meta (17.1.0-5+DEBIAN_VERSION) unstable; urgency=low
 
   * fix double free in mom
