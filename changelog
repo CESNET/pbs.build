@@ -1,3 +1,9 @@
+pbspro-meta (17.1.0-8+DEBIAN_VERSION) unstable; urgency=low
+
+  * rollback to 17.1.0-6
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 30 Nov 2017 11:30:00 +0100
+ 
 pbspro-meta (17.1.0-7+DEBIAN_VERSION) unstable; urgency=low
 
   * merge upstream
