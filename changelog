@@ -1,3 +1,14 @@
+pbspro-meta (18.1.0-1+DEBIAN_VERSION) unstable; urgency=low
+
+  * environment varible fix #206744
+  * full save job on mom exit #207190
+  * safe stop is noticed in momctl insted of log msg #225764
+  * notice on qsub read from stdin #225905
+  * momctl -c ported from torque #233220
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 14 Feb 2017 11:30:00 +0100
+
 pbspro-meta (17.1.0-8+DEBIAN_VERSION) unstable; urgency=low
 
   * rollback to 17.1.0-6
