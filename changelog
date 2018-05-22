@@ -1,3 +1,14 @@
+pbspro-meta (18.1.0-2+DEBIAN_VERSION) unstable; urgency=low
+
+  * arrayjobs survive server restart
+  * mom stuck fix #248703
+  * array jobs send emails #234552
+  * support for cycle interruption in scheduler #238975
+  * warning on failure in sending email #246788
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 22 May 2017 11:30:00 +0100
+
 pbspro-meta (18.1.0-1+DEBIAN_VERSION) unstable; urgency=low
 
   * environment varible fix #206744
