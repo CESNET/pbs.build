@@ -2,4 +2,6 @@
 
 /usr/libexec/pbs_postinstall execution
 
+kill -USR1 $(cat /var/spool/pbs/mom_priv/mom.lock) &>/dev/null
+
 #DEBHELPER#
