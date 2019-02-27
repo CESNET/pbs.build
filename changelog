@@ -1,3 +1,11 @@
+pbspro-meta (19.0.0-2+DEBIAN_VERSION) unstable; urgency=low
+
+  * allow more chars in job name
+  * printjob_svr does not iterate attributes
+  * small memory leak
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 27 Feb 2019 11:30:00 +0100
+
 pbspro-meta (19.0.0-1+DEBIAN_VERSION) unstable; urgency=low
 
   * major upgrade
