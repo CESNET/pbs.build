@@ -83,6 +83,9 @@ install: build
 	sed -i '/GuessMainPID=no/d' debian/pbspro-execution.service
 	sed -i '/\[Service\]/a PIDFile=\/var\/spool\/pbs\/mom_priv\/mom.lock' debian/pbspro-execution.service
 	sed -i '/\[Service\]/a KillMode=process' debian/pbspro-execution.service
+	sed -i '/\[Service\]/a StartLimitIntervalSec=0' debian/pbspro-execution.service
+	sed -i '/\[Service\]/a StartLimitBurst=25' debian/pbspro-execution.service
+	sed -i '/\[Service\]/a RestartSec=5' debian/pbspro-execution.service
 	sed -i 's/Restart=.*/Restart=always/g' debian/pbspro-execution.service
 
 ######## pbspro-server
