@@ -1,3 +1,12 @@
+pbspro-meta (19.0.0-3+DEBIAN_VERSION) unstable; urgency=low
+
+  * upstream merge
+  * fix task lost on upgrade
+  * proper maintenance feature
+  * sched performance improvement
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 11 Jun 2019 11:30:00 +0100
+ 
 pbspro-meta (19.0.0-2+DEBIAN_VERSION) unstable; urgency=low
 
   * allow more chars in job name
