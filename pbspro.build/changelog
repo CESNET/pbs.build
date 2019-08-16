@@ -1,3 +1,9 @@
+pbspro-meta (19.0.0-5+DEBIAN_VERSION) unstable; urgency=low
+
+  * negative resource support optimization
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 16 Aug 2019 11:30:00 +0100
+ 
 pbspro-meta (19.0.0-4+DEBIAN_VERSION) unstable; urgency=low
 
   * initgroups fix
