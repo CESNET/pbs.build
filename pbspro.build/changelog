@@ -1,3 +1,9 @@
+pbspro-meta (19.0.0-9+DEBIAN_VERSION) unstable; urgency=low
+
+  * while deleting sub-job, the server can get stuck in an infinite loop
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 21 Oct 2019 11:30:00 +0100
+
 pbspro-meta (19.0.0-8+DEBIAN_VERSION) unstable; urgency=low
 
   * scheduler may oversubscribe node with exiting subjob
