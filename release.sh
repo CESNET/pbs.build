@@ -17,7 +17,7 @@ os=
 os_version=
 if [ -r /etc/debian_version ]; then
 	os="debian"
-	major_ver=`cat /etc/debian_version | cut -c1`;
+	major_ver=`cat /etc/debian_version | cut -d. -f1`;
 	
 	# debian 7
 	if [ "$major_ver" == "6" ]; then
@@ -28,6 +28,8 @@ if [ -r /etc/debian_version ]; then
 		os_version=8;
 	elif [ "$major_ver" == "9" ]; then
 		os_version=9;
+	elif [ "$major_ver" == "10" ]; then
+		os_version=10;
 	fi
 fi
 
@@ -67,6 +69,9 @@ elif [ $os_version -eq 8 ]; then
 elif [ $os_version -eq 9 ]; then
 	mv ${BUILDDIR}/control.deb9 ${BUILDDIR}/control
 	sed -i -- 's/DEBIAN_VERSION/deb9/g' ${BUILDDIR}/changelog
+elif [ $os_version -eq 10 ]; then
+	mv ${BUILDDIR}/control.deb10 ${BUILDDIR}/control
+	sed -i -- 's/DEBIAN_VERSION/deb10/g' ${BUILDDIR}/changelog
 fi
 
 ln -s ${BUILDDIR} debian
