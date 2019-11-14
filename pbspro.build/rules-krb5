@@ -1,0 +1,268 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+DEB_VERSION ?= $(shell cat /etc/debian_version | cut -d. -f1 )
+
+CFLAGS += -g -ggdb
+
+ifeq ($(DEB_VERSION), 7)
+OPTIONS = LDFLAGS="-L/usr/lib/heimdal/" CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ($(DEB_VERSION), 8)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ($(DEB_VERSION), 9)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ($(DEB_VERSION), 10)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	if [ -x /usr/bin/dh_autotools-dev_updateconfig ]; then \
+	  dh_autotools-dev_updateconfig; \
+	fi
+	rm -f /tmp/pbspro-src
+	ln -sf $(CURDIR) /tmp/pbspro-src
+	mkdir -p debian/build/pbspro
+	cd debian/build/pbspro && /tmp/pbspro-src/configure $(OPTIONS) \
+		--srcdir /tmp/pbspro-src 
+	touch $@
+
+#Architecture 
+build: build-arch
+
+build-arch: build-arch-stamp
+build-arch-stamp: configure
+	$(MAKE) -C debian/build/pbspro
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-arch-stamp build-indep-stamp configure-stamp
+	rm -rf debian/build
+	dh_clean
+	if [ -x /usr/bin/dh_autotools-dev_restoreconfig ]; then \
+	  dh_autotools-dev_restoreconfig; \
+	fi
+
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	
+	mkdir -p $(CURDIR)/debian/pbspro
+	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro
+
+	cp debian/build/pbspro/src/cmds/scripts/pbs.service debian/pbspro-server.service
+	cp debian/build/pbspro/src/cmds/scripts/pbs.service debian/pbspro-execution.service
+	sed -i '/GuessMainPID=no/d' debian/pbspro-execution.service
+	sed -i '/\[Service\]/a PIDFile=\/var\/spool\/pbs\/mom_priv\/mom.lock' debian/pbspro-execution.service
+	sed -i '/\[Service\]/a KillMode=process' debian/pbspro-execution.service
+	sed -i '/\[Service\]/a StartLimitIntervalSec=0' debian/pbspro-execution.service
+	sed -i '/\[Service\]/a StartLimitBurst=25' debian/pbspro-execution.service
+	sed -i '/\[Service\]/a RestartSec=5' debian/pbspro-execution.service
+	sed -i 's/Restart=.*/Restart=always/g' debian/pbspro-execution.service
+
+######## pbspro-server
+	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro-server
+	chmod 4755 debian/pbspro-server/usr/sbin/pbs_rcp
+	rm -rf debian/pbspro-server/usr/unsupported/*.pyc
+	rm -rf debian/pbspro-server/usr/unsupported/*.pyo
+
+	rm -rf debian/pbspro-server/usr/include
+	rm -rf debian/pbspro-server/usr/lib/*.a
+	rm -rf debian/pbspro-server/usr/lib/*.la
+	rm -rf debian/pbspro-server/usr/lib/libpbs.*
+	rm -rf debian/pbspro-server/usr/sbin/pbs_iff
+
+	rm -rf debian/pbspro-server/usr/lib/pkgconfig/
+
+######## pbspro-execution
+	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro-execution
+	chmod 4755 debian/pbspro-execution/usr/sbin/pbs_rcp
+	rm -rf debian/pbspro-execution/usr/bin/printjob_svr.bin
+	rm -rf debian/pbspro-execution/usr/etc/pbs_db_schema.sql
+	rm -rf debian/pbspro-execution/usr/etc/pbs_dedicated
+	rm -rf debian/pbspro-execution/usr/etc/pbs_holidays*
+	rm -rf debian/pbspro-execution/usr/etc/pbs_resource_group
+	rm -rf debian/pbspro-execution/usr/etc/pbs_sched_config
+	rm -rf debian/pbspro-execution/usr/lib*/init.d/sgiICEplacement.sh
+	rm -rf debian/pbspro-execution/usr/lib*/python/altair/pbs_hooks/*
+	rm -rf debian/pbspro-execution/usr/libexec/install_db
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_comm
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_dataservice
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_ds_monitor
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_ds_password
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_ds_password.bin
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_sched
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_server
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_server.bin
+	rm -rf debian/pbspro-execution/usr/sbin/pbsfs
+	rm -rf debian/pbspro-execution/usr/unsupported/*.pyc
+	rm -rf debian/pbspro-execution/usr/unsupported/*.pyo
+
+	rm -rf debian/pbspro-execution/usr/include
+	rm -rf debian/pbspro-execution/usr/lib/*.a
+	rm -rf debian/pbspro-execution/usr/lib/*.la
+	rm -rf debian/pbspro-execution/usr/lib/libpbs.*
+	rm -rf debian/pbspro-execution/usr/sbin/pbs_iff
+
+	rm -rf debian/pbspro-execution/usr/lib/pkgconfig/
+
+######## pbspro-client
+	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro-client
+	chmod 4755 debian/pbspro-client/usr/sbin/pbs_iff
+	rm -rf debian/pbspro-client/usr/bin/mpiexec
+	rm -rf debian/pbspro-client/usr/bin/pbs_attach
+	rm -rf debian/pbspro-client/usr/bin/pbs_tmrsh
+	rm -rf debian/pbspro-client/usr/bin/printjob_svr.bin
+	rm -rf debian/pbspro-client/usr/etc/pbs_db_schema.sql
+	rm -rf debian/pbspro-client/usr/etc/pbs_dedicated
+	rm -rf debian/pbspro-client/usr/etc/pbs_holidays*
+	rm -rf debian/pbspro-client/usr/etc/pbs_resource_group
+	rm -rf debian/pbspro-client/usr/etc/pbs_sched_config
+	rm -rf debian/pbspro-client/usr/include
+	rm -rf debian/pbspro-client/usr/lib*/MPI
+	rm -rf debian/pbspro-client/usr/lib*/init.d
+	rm -rf debian/pbspro-client/usr/lib*/python/altair/pbs_hooks
+	rm -rf debian/pbspro-client/usr/lib*/python/pbs_bootcheck*
+	rm -rf debian/pbspro-client/usr/libexec/install_db
+	rm -rf debian/pbspro-client/usr/libexec/pbs_habitat
+	rm -rf debian/pbspro-client/usr/libexec/pbs_init.d
+	rm -rf debian/pbspro-client/usr/sbin/pbs_comm
+	rm -rf debian/pbspro-client/usr/sbin/pbs_demux
+	rm -rf debian/pbspro-client/usr/sbin/pbs_dataservice
+	rm -rf debian/pbspro-client/usr/sbin/pbs_ds_monitor
+	rm -rf debian/pbspro-client/usr/sbin/pbs_ds_password
+	rm -rf debian/pbspro-client/usr/sbin/pbs_ds_password.bin
+	rm -rf debian/pbspro-client/usr/sbin/pbs_idled
+	rm -rf debian/pbspro-client/usr/sbin/pbs_mom
+	rm -rf debian/pbspro-client/usr/sbin/momctl
+	rm -rf debian/pbspro-client/usr/sbin/pbs_rcp
+	rm -rf debian/pbspro-client/usr/sbin/pbs_sched
+	rm -rf debian/pbspro-client/usr/sbin/pbs_server
+	rm -rf debian/pbspro-client/usr/sbin/pbs_server.bin
+	rm -rf debian/pbspro-client/usr/sbin/pbs_upgrade_job
+	rm -rf debian/pbspro-client/usr/sbin/pbsfs
+	rm -rf debian/pbspro-client/usr/unsupported/*.pyc
+	rm -rf debian/pbspro-client/usr/unsupported/*.pyo
+
+	rm -rf debian/pbspro-client/usr/include
+	rm -rf debian/pbspro-client/usr/lib/*.a
+	rm -rf debian/pbspro-client/usr/lib/*.la
+	rm -rf debian/pbspro-client/usr/lib/libpbs.*
+	rm -rf debian/pbspro-client/usr/sbin/pbs_iff
+
+	rm -rf debian/pbspro-client/usr/lib/pkgconfig/
+	rm -rf debian/pbspro-client/lib/
+
+######## libpbspro
+	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/libpbspro
+	rm -rf debian/libpbspro/etc
+	rm -rf debian/libpbspro/usr/bin/
+	rm -rf debian/libpbspro/usr/etc/
+	rm -rf debian/libpbspro/usr/include/
+	rm -rf debian/libpbspro/usr/lib/init.d/
+	rm -rf debian/libpbspro/usr/lib/MPI/
+	rm -rf debian/libpbspro/usr/lib/python/
+	rm -rf debian/libpbspro/usr/lib/systemd/
+	rm -rf debian/libpbspro/usr/lib/*.a
+	rm -rf debian/libpbspro/usr/lib/*.la
+	rm -rf debian/libpbspro/usr/libexec/
+	rm -rf debian/libpbspro/usr/sbin/*
+	rm -rf debian/libpbspro/usr/share/
+	rm -rf debian/libpbspro/usr/unsupported/
+	rm -rf debian/libpbspro/usr/lib/libpbs.so
+
+	rm -rf debian/libpbspro/usr/lib/pkgconfig/
+	rm -rf debian/libpbspro/lib/
+
+	cp debian/pbspro/usr/sbin/pbs_iff debian/libpbspro/usr/sbin/pbs_iff
+	chmod 4755 debian/libpbspro/usr/sbin/pbs_iff
+
+	dh_install
+	
+######## libpbspro-dev
+	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/libpbspro-dev
+	rm -rf debian/libpbspro-dev/etc
+	rm -rf debian/libpbspro-dev/usr/bin/
+	rm -rf debian/libpbspro-dev/usr/etc/
+	rm -rf debian/libpbspro-dev/usr/lib/init.d/
+	rm -rf debian/libpbspro-dev/usr/lib/MPI/
+	rm -rf debian/libpbspro-dev/usr/lib/python/
+	rm -rf debian/libpbspro-dev/usr/lib/systemd/
+	rm -rf debian/libpbspro-dev/usr/lib/libpbs.so.0
+	rm -rf debian/libpbspro-dev/usr/lib/libpbs.so.0.0.0
+	rm -rf debian/libpbspro-dev/usr/libexec/
+	rm -rf debian/libpbspro-dev/usr/sbin/
+	rm -rf debian/libpbspro-dev/usr/share/
+	rm -rf debian/libpbspro-dev/usr/unsupported/
+
+	rm -rf debian/libpbspro-dev/usr/lib/pkgconfig/
+	rm -rf debian/libpbspro-dev/lib/
+
+	dh_install
+
+
+binary-arch: install
+	dh_testdir
+	dh_testroot
+#	dh_installchangelogs CHANGELOG
+	dh_installdocs
+	dh_installexamples
+#	dh_installmenu
+#	dh_installdebconf	
+#	dh_installlogrotate	
+	dh_installinit -p pbspro-execution --init-script=pbs -r --no-start
+	dh_installinit -p pbspro-server --init-script=pbs --no-start
+	dh_systemd_enable --name pbs
+	dh_installcron
+#	dh_installinfo
+	dh_lintian
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress 
+#	dh_fixperms -X pbs_iff -X /var/spool/torque/spool -X /var/spool/torque/undelivered
+	dh_makeshlibs
+	dh_installdeb
+#	dh_perl
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+
+binary: binary-arch
+
+.PHONY: build clean binary-indep binary-arch binary install install-indep install-arch
