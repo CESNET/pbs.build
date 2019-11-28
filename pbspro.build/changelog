@@ -1,3 +1,9 @@
+pbspro-meta (19.0.0-12+DEBIAN_VERSION) unstable; urgency=low
+
+  * centralized kerberos - hotfix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 20 Nov 2019 11:30:00 +0100
+ 
 pbspro-meta (19.0.0-11+DEBIAN_VERSION) unstable; urgency=low
 
   * centralized kerberos - merged into upstream
