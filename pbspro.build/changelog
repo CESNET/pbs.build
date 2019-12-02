@@ -1,3 +1,10 @@
+pbspro-meta (19.0.0-13+DEBIAN_VERSION) unstable; urgency=low
+
+  * afslog in forked process
+  * export PBSPRO_IGNORE_KERBEROS in init script
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 1 Dec 2019 11:30:00 +0100
+
 pbspro-meta (19.0.0-12+DEBIAN_VERSION) unstable; urgency=low
 
   * centralized kerberos - hotfix
