@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # BASE CONFIGURATION
-RELEASE_TAG_PREFIX="v"
-
 export LC_ALL=C
 export LANG=C
 
@@ -37,26 +35,6 @@ if [ -z os ] || [ -z os_version ]; then
 	echo "ERROR: Unsupported system detected.";
 	exit 1
 fi
-
-# Determine the last tagged release
-#current_tag=$(git tag | grep "^$RELEASE_TAG_PREFIX" | sort -n -t. -k 3 | tail -n 1);
-#current_tag_numeric=$(echo $current_tag | cut -b${#RELEASE_TAG_PREFIX} --complement);
-
-#if [ -z current_tag ]; then
-#	echo "ERROR: Could not detect the last tagged release.";
-#	exit 2
-#fi
-
-# Verify that build configuration is up to date with last tagged release
-#if [ "$(grep $current_tag_numeric CHANGELOG)" == "" ]; then
-#	echo "ERROR: Last tagged release [${current_tag_numeric}] not found in CHANGELOG file.";
-#	exit 2
-#fi
-
-#if [ "$(grep $current_tag_numeric pbspro.build/changelog)" == "" ]; then
-#	echo "ERROR: Last tagged release [${current_tag_numeric}] not found in debian changelog";
-#	exit 2
-#fi
 
 BUILDDIR=$(mktemp -d);
 cp pbspro.build/* ${BUILDDIR}
