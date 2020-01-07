@@ -10,9 +10,10 @@ autoreconf -ivf
 
 # Determine System & it's version
 
-# This is debian
+# This is debian/ubuntu
 os=
 os_version=
+os_codename=""
 if [ -r /etc/debian_version ]; then
 	os="debian"
 	major_ver=`cat /etc/debian_version | cut -d. -f1`;
@@ -28,6 +29,9 @@ if [ -r /etc/debian_version ]; then
 		os_version=9;
 	elif [ "$major_ver" == "10" ]; then
 		os_version=10;
+	elif [ "$major_ver" == "buster/sid" ]; then
+		os_codename="$(lsb_release -c | awk '{print $2}')";
+		os_version=0;
 	fi
 fi
 
@@ -50,6 +54,11 @@ elif [ $os_version -eq 9 ]; then
 elif [ $os_version -eq 10 ]; then
 	mv ${BUILDDIR}/control.deb10 ${BUILDDIR}/control
 	sed -i -- 's/DEBIAN_VERSION/deb10/g' ${BUILDDIR}/changelog
+fi
+
+if [ "x$os_codename" == "xbionic" ]; then
+	mv ${BUILDDIR}/control.bionic ${BUILDDIR}/control
+	sed -i -- 's/+DEBIAN_VERSION//g' ${BUILDDIR}/changelog
 fi
 
 ln -s ${BUILDDIR} debian
