@@ -1,3 +1,11 @@
+pbspro-meta (19.0.0-16+DEBIAN_VERSION) unstable; urgency=low
+
+  * forked process should close local logfile; afslog logging goes to syslog only
+  * hwloc keeps opened devices (like /dev/nvidia*)
+  * pbs_mom segfaults when doing a rerun with an epilogue script
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 17 Feb 2020 11:30:00 +0100
+
 pbspro-meta (19.0.0-15+DEBIAN_VERSION) unstable; urgency=low
 
   * Sched segfaults accessing free'd node partition cache
