@@ -1,3 +1,9 @@
+pbspro-meta (19.0.0-17+DEBIAN_VERSION) unstable; urgency=low
+
+  * waitpid fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 17 Feb 2020 11:30:00 +0100
+
 pbspro-meta (19.0.0-16+DEBIAN_VERSION) unstable; urgency=low
 
   * forked process should close local logfile; afslog logging goes to syslog only
