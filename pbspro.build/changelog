@@ -1,3 +1,12 @@
+pbspro-meta (19.0.0-18+DEBIAN_VERSION) unstable; urgency=low
+
+  * change euid for singleshot_afslog
+  * scheduler: check for bucket_ind while adding to calendar
+  * rpp connection 'server -> mom' can be confused
+  * reset root privileges on start_afslog error fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 2 Mar 2020 11:30:00 +0100
+
 pbspro-meta (19.0.0-17+DEBIAN_VERSION) unstable; urgency=low
 
   * waitpid fix
