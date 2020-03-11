@@ -1,3 +1,9 @@
+pbspro-meta (19.0.0-19+DEBIAN_VERSION) unstable; urgency=low
+
+  * peer scheduling fix - remove unused gethostbyaddr()
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 11 Mar 2020 11:30:00 +0100
+
 pbspro-meta (19.0.0-18+DEBIAN_VERSION) unstable; urgency=low
 
   * change euid for singleshot_afslog
