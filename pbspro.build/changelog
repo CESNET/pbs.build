@@ -1,3 +1,10 @@
+pbspro-meta (19.0.0-20+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix PJobSubState table
+  * allstrres fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 15 May 2020 11:30:00 +0100
+
 pbspro-meta (19.0.0-19+DEBIAN_VERSION) unstable; urgency=low
 
   * peer scheduling fix - remove unused gethostbyaddr()
