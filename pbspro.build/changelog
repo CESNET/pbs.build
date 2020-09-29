@@ -1,3 +1,10 @@
+pbspro-meta (19.0.0-21+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix acl hosts on queues
+  * if getting new mom addr fails on init job, preserve original mom addr
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 29 Sep 2020 11:30:00 +0100
+ 
 pbspro-meta (19.0.0-20+DEBIAN_VERSION) unstable; urgency=low
 
   * fix PJobSubState table
