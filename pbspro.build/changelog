@@ -1,3 +1,9 @@
+pbspro-meta (19.0.0-22+DEBIAN_VERSION) unstable; urgency=low
+
+  * configurable mailer
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 1 Oct 2020 11:30:00 +0100
+
 pbspro-meta (19.0.0-21+DEBIAN_VERSION) unstable; urgency=low
 
   * fix acl hosts on queues
