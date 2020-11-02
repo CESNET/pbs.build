@@ -117,6 +117,7 @@ install: build
 ######## pbspro-execution
 	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro-execution
 	chmod 4755 debian/pbspro-execution/usr/sbin/pbs_rcp
+	rm -rf debian/pbspro-execution/usr/bin/mpiexec
 	rm -rf debian/pbspro-execution/usr/bin/printjob_svr.bin
 	rm -rf debian/pbspro-execution/usr/etc/pbs_db_schema.sql
 	rm -rf debian/pbspro-execution/usr/etc/pbs_dedicated
