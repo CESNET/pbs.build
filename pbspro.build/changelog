@@ -1,3 +1,9 @@
+pbspro-meta (19.0.0-24+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix ji_pids memory leak 
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 5 Nov 2020 11:30:00 +0100
+
 pbspro-meta (19.0.0-23+DEBIAN_VERSION) unstable; urgency=low
 
   * support for reporting kill job via momctl
