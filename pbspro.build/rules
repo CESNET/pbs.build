@@ -99,6 +99,7 @@ install: build
 	sed -i '/\[Service\]/a StartLimitBurst=25' debian/pbspro-execution.service
 	sed -i '/\[Service\]/a RestartSec=5' debian/pbspro-execution.service
 	sed -i 's/Restart=.*/Restart=always/g' debian/pbspro-execution.service
+	sed -i '/After=.*/s/$$/ time-sync.target/' debian/pbspro-execution.service
 
 ######## pbspro-server
 	$(MAKE) -C debian/build/pbspro install DESTDIR=$(CURDIR)/debian/pbspro-server
