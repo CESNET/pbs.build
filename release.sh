@@ -32,6 +32,9 @@ if [ -r /etc/debian_version ]; then
 	elif [ "$major_ver" == "buster/sid" ]; then
 		os_codename="$(lsb_release -c | awk '{print $2}')";
 		os_version=0;
+	elif [ "$major_ver" == "bullseye/sid" ]; then
+		os_codename="$(lsb_release -c | awk '{print $2}')";
+		os_version=0;
 	fi
 fi
 
@@ -58,6 +61,11 @@ fi
 
 if [ "x$os_codename" == "xbionic" ]; then
 	mv ${BUILDDIR}/control.bionic ${BUILDDIR}/control
+	sed -i -- 's/+DEBIAN_VERSION//g' ${BUILDDIR}/changelog
+fi
+
+if [ "x$os_codename" == "xfocal" ]; then
+	mv ${BUILDDIR}/control.focal ${BUILDDIR}/control
 	sed -i -- 's/+DEBIAN_VERSION//g' ${BUILDDIR}/changelog
 fi
 

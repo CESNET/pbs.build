@@ -1,0 +1,97 @@
+Source: pbspro-meta
+Section: net
+Priority: optional
+Maintainer: Vaclav Chlumsky <vchlumsky@cesnet.cz>
+Uploaders: Vaclav Chlumsky <vchlumsky@cesnet.cz>
+Build-Depends: autotools-dev (>= 20100122.1~),
+               libtool,
+               libX11-dev,
+               libXt-dev,
+               libedit-dev,
+               libical-dev,
+               ncurses-dev,
+               perl,
+               postgresql-server-dev-all,
+               postgresql-contrib,
+               python-dev,
+               tcl-dev,
+               tk-dev,
+               swig,
+               libexpat-dev,
+               libssl-dev,
+               libxext-dev,
+               libxft-dev
+Standards-Version: 3.8.4
+DM-Upload-Allowed: yes
+XS-Autobuild: yes
+Vcs-Git: git@github.com:CESNET/pbspro.git
+Vcs-Browser: https://github.com/CESNET/pbspro
+Homepage: http://pbspro.org/
+
+Package: pbspro-server
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpbspro (= ${binary:Version}), expat, libedit2, postgresql, postgresql-contrib, python3, sudo, tcl, tk, libical3, libpq-dev
+Conflicts: pbspro-execution, pbspro-client, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
+Description: PBS Professional® is a fast, powerful workload manager and
+ job scheduler designed to improve productivity, optimize
+ utilization & efficiency, and simplify administration for
+ HPC clusters, clouds and supercomputers.
+ .
+ This package is intended for a server host. It includes all
+ PBS Professional components.
+
+Package: pbspro-execution
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpbspro (= ${binary:Version}), expat, python3
+Conflicts: pbspro-server, pbspro-client, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
+Description: PBS Professional® is a fast, powerful workload manager and
+ job scheduler designed to improve productivity, optimize
+ utilization & efficiency, and simplify administration for
+ HPC clusters, clouds and supercomputers.
+ .
+ This package is intended for an execution host. It does not
+ include the scheduler, server, or communication agent. It
+ does include the PBS Professional user commands. 
+
+Package: pbspro-client
+Section: utils
+Architecture: any
+Conflicts: pbspro-server, pbspro-execution, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpbspro (= ${binary:Version}), python3
+Description: PBS Professional® is a fast, powerful workload manager and
+ job scheduler designed to improve productivity, optimize
+ utilization & efficiency, and simplify administration for
+ HPC clusters, clouds and supercomputers.
+ .
+ This package is intended for a client host and provides
+ the PBS Professional user commands.
+ 
+Package: libpbspro
+Section: libs
+Provides: libpbspro
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: pbs, pbs-mom, pbs-cmds
+Description: PBS Professional® is a fast, powerful workload manager and
+ job scheduler designed to improve productivity, optimize
+ utilization & efficiency, and simplify administration for
+ HPC clusters, clouds and supercomputers.
+ .
+ Clients, mom and server all share a certain set of shared libraries 
+ that are combined in this library.
+ 
+Package: libpbspro-dev
+Section: libdevel
+Provides: libpbspro-dev
+Architecture: any
+Depends: libpbspro (= ${binary:Version}), heimdal-multidev, ${shlibs:Depends}, ${misc:Depends}
+Conflicts: pbs, pbs-mom, pbs-cmds
+Description: PBS Professional® is a fast, powerful workload manager and
+ job scheduler designed to improve productivity, optimize
+ utilization & efficiency, and simplify administration for
+ HPC clusters, clouds and supercomputers.
+ .
+ This package includes the header files and static libraries necessary for
+ developing programs which will use pbspro.
