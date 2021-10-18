@@ -1,3 +1,12 @@
+pbspro-meta (19.0.0-26+DEBIAN_VERSION) unstable; urgency=low
+
+  * remove useless logging of EOD
+  * fix empty dependency segfault
+  * expand buffer for momctl diag command
+  * add hwloc version 2.x support
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 18 Oct 2021 11:30:00 +0100
+
 pbspro-meta (19.0.0-25+DEBIAN_VERSION) unstable; urgency=low
 
   * Exceeded resources notification
