@@ -42,6 +42,13 @@ OPTIONS = CFLAGS="$(CFLAGS)" \
           --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
 endif
 
+ifeq ($(DEB_VERSION), 11)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
 ifeq ("$(DEB_VERSION)", "buster/sid")
 OPTIONS = CFLAGS="$(CFLAGS)" \
           --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \

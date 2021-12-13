@@ -29,6 +29,8 @@ if [ -r /etc/debian_version ]; then
 		os_version=9;
 	elif [ "$major_ver" == "10" ]; then
 		os_version=10;
+	elif [ "$major_ver" == "11" ]; then
+		os_version=11;
 	elif [ "$major_ver" == "buster/sid" ]; then
 		os_codename="$(lsb_release -c | awk '{print $2}')";
 		os_version=0;
@@ -57,6 +59,9 @@ elif [ $os_version -eq 9 ]; then
 elif [ $os_version -eq 10 ]; then
 	mv ${BUILDDIR}/control.deb10 ${BUILDDIR}/control
 	sed -i -- 's/DEBIAN_VERSION/deb10/g' ${BUILDDIR}/changelog
+elif [ $os_version -eq 11 ]; then
+	mv ${BUILDDIR}/control.deb11 ${BUILDDIR}/control
+	sed -i -- 's/DEBIAN_VERSION/deb11/g' ${BUILDDIR}/changelog
 fi
 
 if [ "x$os_codename" == "xbionic" ]; then
