@@ -1,3 +1,9 @@
+pbspro-meta (19.0.0-27+DEBIAN_VERSION) unstable; urgency=low
+
+  * debian 11 support
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 14 Jan 2022 11:30:00 +0100
+
 pbspro-meta (19.0.0-26+DEBIAN_VERSION) unstable; urgency=low
 
   * remove useless logging of EOD
