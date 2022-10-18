@@ -1,3 +1,12 @@
+pbspro-meta (19.0.0-29+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix non-consumable atleast resource
+  * add state_aux and comment_aux
+  * option to disable interactive jobs on submitting client
+  * bug fixes
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 18 Oct 2022 11:30:00 +0100
+
 pbspro-meta (19.0.0-28+DEBIAN_VERSION) unstable; urgency=low
 
   * support for non-consumable atleast resource
