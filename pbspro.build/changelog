@@ -1,3 +1,11 @@
+pbspro-meta (19.0.0-30+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix fairshare initial usage comulation
+  * clear estimates for former topjobs
+  * fix missing stime after server crashing
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 6 Feb 2023 11:30:00 +0100
+
 pbspro-meta (19.0.0-29+DEBIAN_VERSION) unstable; urgency=low
 
   * fix non-consumable atleast resource
