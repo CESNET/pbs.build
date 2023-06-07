@@ -1,3 +1,12 @@
+pbspro-meta (19.0.0-32+DEBIAN_VERSION) unstable; urgency=low
+
+  * exit status must be negative to preserve local exit status in obit
+  * fix qrank format
+  * fix shell info in qsub man
+  * clear estimates only for non-array and queued jobs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 7 Jun 2023 11:30:00 +0100
+
 pbspro-meta (19.0.0-31+DEBIAN_VERSION) unstable; urgency=low
 
   * queue associated with wrong set of nodes in multisched
