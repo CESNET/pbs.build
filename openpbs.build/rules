@@ -1,0 +1,306 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+DEB_VERSION ?= $(shell cat /etc/debian_version | cut -d. -f1 )
+
+CFLAGS += -g -ggdb
+
+ifeq ($(DEB_VERSION), 7)
+OPTIONS = LDFLAGS="-L/usr/lib/heimdal/" CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ($(DEB_VERSION), 8)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ($(DEB_VERSION), 9)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ($(DEB_VERSION), 10)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ($(DEB_VERSION), 11)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ($(DEB_VERSION), 12)
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ("$(DEB_VERSION)", "buster/sid")
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ("$(DEB_VERSION)", "bullseye/sid")
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+ifeq ("$(DEB_VERSION)", "bookworm/sid")
+OPTIONS = CFLAGS="$(CFLAGS)" \
+          --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+          --prefix=/usr/ --with-pbs-server-home=/var/spool/pbs --with-database-user=postgres \
+          --with-krbauth PATH_KRB5_CONFIG=/usr/bin/krb5-config.heimdal
+endif
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	if [ -x /usr/bin/dh_autotools-dev_updateconfig ]; then \
+	  dh_autotools-dev_updateconfig; \
+	fi
+	rm -f /tmp/openpbs-src
+	ln -sf $(CURDIR) /tmp/openpbs-src
+	mkdir -p debian/build/openpbs
+	cd debian/build/openpbs && /tmp/openpbs-src/configure $(OPTIONS) \
+		--srcdir /tmp/openpbs-src 
+	touch $@
+
+#Architecture 
+build: build-arch
+
+build-arch: build-arch-stamp
+build-arch-stamp: configure
+	$(MAKE) -C debian/build/openpbs
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-arch-stamp build-indep-stamp configure-stamp
+	rm -rf debian/build
+	dh_clean
+	if [ -x /usr/bin/dh_autotools-dev_restoreconfig ]; then \
+	  dh_autotools-dev_restoreconfig; \
+	fi
+
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	
+	mkdir -p $(CURDIR)/debian/openpbs
+	$(MAKE) -C debian/build/openpbs install DESTDIR=$(CURDIR)/debian/openpbs
+
+	cp debian/build/openpbs/src/cmds/scripts/pbs.service debian/openpbs-server.service
+	cp debian/build/openpbs/src/cmds/scripts/pbs.service debian/openpbs-execution.service
+	sed -i '/GuessMainPID=no/d' debian/openpbs-execution.service
+	sed -i '/\[Service\]/a PIDFile=\/var\/spool\/pbs\/mom_priv\/mom.lock' debian/openpbs-execution.service
+	sed -i '/\[Service\]/a KillMode=process' debian/openpbs-execution.service
+	sed -i '/\[Service\]/a StartLimitIntervalSec=0' debian/openpbs-execution.service
+	sed -i '/\[Service\]/a StartLimitBurst=25' debian/openpbs-execution.service
+	sed -i '/\[Service\]/a RestartSec=5' debian/openpbs-execution.service
+	sed -i 's/Restart=.*/Restart=always/g' debian/openpbs-execution.service
+	sed -i '/After=.*/s/$$/ time-sync.target/' debian/openpbs-execution.service
+	sed -i '/TimeoutStartSec=0/d' debian/openpbs-execution.service
+
+######## openpbs-server
+	$(MAKE) -C debian/build/openpbs install DESTDIR=$(CURDIR)/debian/openpbs-server
+	chmod 4755 debian/openpbs-server/usr/sbin/pbs_rcp
+	rm -rf debian/openpbs-server/usr/unsupported/*.pyc
+	rm -rf debian/openpbs-server/usr/unsupported/*.pyo
+
+	rm -rf debian/openpbs-server/usr/include
+	rm -rf debian/openpbs-server/usr/lib/*.a
+	rm -rf debian/openpbs-server/usr/lib/*.la
+	rm -rf debian/openpbs-server/usr/lib/lib*
+	rm -rf debian/openpbs-server/usr/sbin/pbs_iff
+
+	rm -rf debian/openpbs-server/usr/lib/pkgconfig/
+
+######## openpbs-execution
+	$(MAKE) -C debian/build/openpbs install DESTDIR=$(CURDIR)/debian/openpbs-execution
+	chmod 4755 debian/openpbs-execution/usr/sbin/pbs_rcp
+	rm -rf debian/openpbs-execution/usr/bin/mpiexec
+	rm -rf debian/openpbs-execution/usr/bin/printjob_svr.bin
+	rm -rf debian/openpbs-execution/usr/etc/pbs_db_schema.sql
+	rm -rf debian/openpbs-execution/usr/etc/pbs_dedicated
+	rm -rf debian/openpbs-execution/usr/etc/pbs_holidays*
+	rm -rf debian/openpbs-execution/usr/etc/pbs_resource_group
+	rm -rf debian/openpbs-execution/usr/etc/pbs_sched_config
+	rm -rf debian/openpbs-execution/usr/lib*/init.d/sgiICEplacement.sh
+	rm -rf debian/openpbs-execution/usr/lib*/python/altair/pbs_hooks/*
+	rm -rf debian/openpbs-execution/usr/libexec/install_db
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_comm
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_dataservice
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_ds_monitor
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_ds_password
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_ds_password.bin
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_sched
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_server
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_server.bin
+	rm -rf debian/openpbs-execution/usr/sbin/pbsfs
+	rm -rf debian/openpbs-execution/usr/unsupported/*.pyc
+	rm -rf debian/openpbs-execution/usr/unsupported/*.pyo
+
+	rm -rf debian/openpbs-execution/usr/include
+	rm -rf debian/openpbs-execution/usr/lib/*.a
+	rm -rf debian/openpbs-execution/usr/lib/*.la
+	rm -rf debian/openpbs-execution/usr/lib/lib*
+	rm -rf debian/openpbs-execution/usr/sbin/pbs_iff
+
+	rm -rf debian/openpbs-execution/usr/lib/pkgconfig/
+
+######## openpbs-client
+	$(MAKE) -C debian/build/openpbs install DESTDIR=$(CURDIR)/debian/openpbs-client
+	chmod 4755 debian/openpbs-client/usr/sbin/pbs_iff
+	rm -rf debian/openpbs-client/usr/bin/mpiexec
+	rm -rf debian/openpbs-client/usr/bin/pbs_attach
+	rm -rf debian/openpbs-client/usr/bin/pbs_tmrsh
+	rm -rf debian/openpbs-client/usr/bin/printjob_svr.bin
+	rm -rf debian/openpbs-client/usr/etc/pbs_db_schema.sql
+	rm -rf debian/openpbs-client/usr/etc/pbs_dedicated
+	rm -rf debian/openpbs-client/usr/etc/pbs_holidays*
+	rm -rf debian/openpbs-client/usr/etc/pbs_resource_group
+	rm -rf debian/openpbs-client/usr/etc/pbs_sched_config
+	rm -rf debian/openpbs-client/usr/include
+	rm -rf debian/openpbs-client/usr/lib*/MPI
+	rm -rf debian/openpbs-client/usr/lib*/init.d
+	rm -rf debian/openpbs-client/usr/lib*/python/altair/pbs_hooks
+	rm -rf debian/openpbs-client/usr/lib*/python/pbs_bootcheck*
+	rm -rf debian/openpbs-client/usr/libexec/install_db
+	rm -rf debian/openpbs-client/usr/libexec/pbs_habitat
+	rm -rf debian/openpbs-client/usr/libexec/pbs_init.d
+	rm -rf debian/openpbs-client/usr/sbin/pbs_comm
+	rm -rf debian/openpbs-client/usr/sbin/pbs_demux
+	rm -rf debian/openpbs-client/usr/sbin/pbs_dataservice
+	rm -rf debian/openpbs-client/usr/sbin/pbs_ds_monitor
+	rm -rf debian/openpbs-client/usr/sbin/pbs_ds_password
+	rm -rf debian/openpbs-client/usr/sbin/pbs_ds_password.bin
+	rm -rf debian/openpbs-client/usr/sbin/pbs_idled
+	rm -rf debian/openpbs-client/usr/sbin/pbs_mom
+	rm -rf debian/openpbs-client/usr/sbin/momctl
+	rm -rf debian/openpbs-client/usr/sbin/pbs_rcp
+	rm -rf debian/openpbs-client/usr/sbin/pbs_sched
+	rm -rf debian/openpbs-client/usr/sbin/pbs_server
+	rm -rf debian/openpbs-client/usr/sbin/pbs_server.bin
+	rm -rf debian/openpbs-client/usr/sbin/pbs_upgrade_job
+	rm -rf debian/openpbs-client/usr/sbin/pbsfs
+	rm -rf debian/openpbs-client/usr/unsupported/*.pyc
+	rm -rf debian/openpbs-client/usr/unsupported/*.pyo
+
+	rm -rf debian/openpbs-client/usr/include
+	rm -rf debian/openpbs-client/usr/lib/*.a
+	rm -rf debian/openpbs-client/usr/lib/*.la
+	rm -rf debian/openpbs-client/usr/lib/lib*
+	rm -rf debian/openpbs-client/usr/sbin/pbs_iff
+
+	rm -rf debian/openpbs-client/usr/lib/pkgconfig/
+	rm -rf debian/openpbs-client/lib/
+
+######## libopenpbs
+	$(MAKE) -C debian/build/openpbs install DESTDIR=$(CURDIR)/debian/libopenpbs
+	rm -rf debian/libopenpbs/etc
+	rm -rf debian/libopenpbs/usr/bin/
+	rm -rf debian/libopenpbs/usr/etc/
+	rm -rf debian/libopenpbs/usr/include/
+	rm -rf debian/libopenpbs/usr/lib/init.d/
+	rm -rf debian/libopenpbs/usr/lib/MPI/
+	rm -rf debian/libopenpbs/usr/lib/python/
+	rm -rf debian/libopenpbs/usr/lib/systemd/
+	rm -rf debian/libopenpbs/usr/lib/*.a
+	rm -rf debian/libopenpbs/usr/lib/*.la
+	rm -rf debian/libopenpbs/usr/libexec/
+	rm -rf debian/libopenpbs/usr/sbin/*
+	rm -rf debian/libopenpbs/usr/share/
+	rm -rf debian/libopenpbs/usr/unsupported/
+	rm -rf debian/libopenpbs/usr/lib/libpbs.so
+
+	rm -rf debian/libopenpbs/usr/lib/pkgconfig/
+	rm -rf debian/libopenpbs/lib/
+
+	cp debian/openpbs/usr/sbin/pbs_iff debian/libopenpbs/usr/sbin/pbs_iff
+	chmod 4755 debian/libopenpbs/usr/sbin/pbs_iff
+
+	dh_install
+	
+######## libopenpbs-dev
+	$(MAKE) -C debian/build/openpbs install DESTDIR=$(CURDIR)/debian/libopenpbs-dev
+	rm -rf debian/libopenpbs-dev/etc
+	rm -rf debian/libopenpbs-dev/usr/bin/
+	rm -rf debian/libopenpbs-dev/usr/etc/
+	rm -rf debian/libopenpbs-dev/usr/lib/init.d/
+	rm -rf debian/libopenpbs-dev/usr/lib/MPI/
+	rm -rf debian/libopenpbs-dev/usr/lib/python/
+	rm -rf debian/libopenpbs-dev/usr/lib/systemd/
+	rm -rf debian/libopenpbs-dev/usr/lib/*.so.0
+	rm -rf debian/libopenpbs-dev/usr/lib/*.so.0.0.0
+	rm -rf debian/libopenpbs-dev/usr/libexec/
+	rm -rf debian/libopenpbs-dev/usr/sbin/
+	rm -rf debian/libopenpbs-dev/usr/share/
+	rm -rf debian/libopenpbs-dev/usr/unsupported/
+
+	rm -rf debian/libopenpbs-dev/usr/lib/pkgconfig/
+	rm -rf debian/libopenpbs-dev/lib/
+
+	dh_install
+
+
+binary-arch: install
+	dh_testdir
+	dh_testroot
+#	dh_installchangelogs CHANGELOG
+	dh_installdocs
+	dh_installexamples
+#	dh_installmenu
+#	dh_installdebconf	
+#	dh_installlogrotate	
+	dh_installinit -p openpbs-execution --init-script=pbs -r --no-start
+	dh_installinit -p openpbs-server --init-script=pbs --no-start
+	dh_systemd_enable --name pbs
+	dh_installcron
+#	dh_installinfo
+	dh_lintian
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress 
+#	dh_fixperms -X pbs_iff -X /var/spool/torque/spool -X /var/spool/torque/undelivered
+	dh_makeshlibs
+	dh_installdeb
+#	dh_perl
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+
+binary: binary-arch
+
+.PHONY: build clean binary-indep binary-arch binary install install-indep install-arch

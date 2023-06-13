@@ -1,0 +1,497 @@
+openpbs-meta (23.06.06-1+DEBIAN_VERSION) unstable; urgency=low
+
+  * openpbs release
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 13 Jun 2023 11:30:00 +0100
+
+openpbs-meta (19.0.0-32+DEBIAN_VERSION) unstable; urgency=low
+
+  * exit status must be negative to preserve local exit status in obit
+  * fix qrank format
+  * fix shell info in qsub man
+  * clear estimates only for non-array and queued jobs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 7 Jun 2023 11:30:00 +0100
+
+openpbs-meta (19.0.0-31+DEBIAN_VERSION) unstable; urgency=low
+
+  * queue associated with wrong set of nodes in multisched
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 17 Apr 2023 11:30:00 +0100
+
+openpbs-meta (19.0.0-30+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix fairshare initial usage comulation
+  * clear estimates for former topjobs
+  * fix missing stime after server crashing
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 6 Feb 2023 11:30:00 +0100
+
+openpbs-meta (19.0.0-29+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix non-consumable atleast resource
+  * add state_aux and comment_aux
+  * option to disable interactive jobs on submitting client
+  * bug fixes
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 18 Oct 2022 11:30:00 +0100
+
+openpbs-meta (19.0.0-28+DEBIAN_VERSION) unstable; urgency=low
+
+  * support for non-consumable atleast resource
+  * always ping nodes offlined by mom
+  * change sprintf to snprintf for long messages
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 5 Apr 2022 11:30:00 +0100
+
+openpbs-meta (19.0.0-27+DEBIAN_VERSION) unstable; urgency=low
+
+  * debian 11 support
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 14 Jan 2022 11:30:00 +0100
+
+openpbs-meta (19.0.0-26+DEBIAN_VERSION) unstable; urgency=low
+
+  * remove useless logging of EOD
+  * fix empty dependency segfault
+  * expand buffer for momctl diag command
+  * add hwloc version 2.x support
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 18 Oct 2021 11:30:00 +0100
+
+openpbs-meta (19.0.0-25+DEBIAN_VERSION) unstable; urgency=low
+
+  * Exceeded resources notification
+  * pbs_execution: add After=time-sync.target
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 7 Dec 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-24+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix ji_pids memory leak 
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 5 Nov 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-23+DEBIAN_VERSION) unstable; urgency=low
+
+  * support for reporting kill job via momctl
+  * pbs_rsub multiple hosts fox
+  * remove mpiexec from openpbs-execution
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 2 Nov 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-22+DEBIAN_VERSION) unstable; urgency=low
+
+  * configurable mailer
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 1 Oct 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-21+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix acl hosts on queues
+  * if getting new mom addr fails on init job, preserve original mom addr
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 29 Sep 2020 11:30:00 +0100
+ 
+openpbs-meta (19.0.0-20+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix PJobSubState table
+  * allstrres fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 15 May 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-19+DEBIAN_VERSION) unstable; urgency=low
+
+  * peer scheduling fix - remove unused gethostbyaddr()
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 11 Mar 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-18+DEBIAN_VERSION) unstable; urgency=low
+
+  * change euid for singleshot_afslog
+  * scheduler: check for bucket_ind while adding to calendar
+  * rpp connection 'server -> mom' can be confused
+  * reset root privileges on start_afslog error fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 2 Mar 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-17+DEBIAN_VERSION) unstable; urgency=low
+
+  * waitpid fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 17 Feb 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-16+DEBIAN_VERSION) unstable; urgency=low
+
+  * forked process should close local logfile; afslog logging goes to syslog only
+  * hwloc keeps opened devices (like /dev/nvidia*)
+  * pbs_mom segfaults when doing a rerun with an epilogue script
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 17 Feb 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-15+DEBIAN_VERSION) unstable; urgency=low
+
+  * Sched segfaults accessing free'd node partition cache
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Sun, 12 Jan 2020 11:30:00 +0100
+
+openpbs-meta (19.0.0-14+DEBIAN_VERSION) unstable; urgency=low
+
+  * reset the size of TCP buffers
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 5 Dec 2019 11:30:00 +0100
+
+openpbs-meta (19.0.0-13+DEBIAN_VERSION) unstable; urgency=low
+
+  * afslog in forked process
+  * export PBSPRO_IGNORE_KERBEROS in init script
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 2 Dec 2019 11:30:00 +0100
+
+openpbs-meta (19.0.0-12+DEBIAN_VERSION) unstable; urgency=low
+
+  * centralized kerberos - hotfix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 20 Nov 2019 11:30:00 +0100
+ 
+openpbs-meta (19.0.0-11+DEBIAN_VERSION) unstable; urgency=low
+
+  * centralized kerberos - merged into upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 14 Nov 2019 11:30:00 +0100
+
+openpbs-meta (19.0.0-10+DEBIAN_VERSION) unstable; urgency=low
+
+  * centralized kerberos
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 21 Oct 2019 11:30:00 +0100
+
+openpbs-meta (19.0.0-9+DEBIAN_VERSION) unstable; urgency=low
+
+  * while deleting sub-job, the server can get stuck in an infinite loop
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 21 Oct 2019 11:30:00 +0100
+
+openpbs-meta (19.0.0-8+DEBIAN_VERSION) unstable; urgency=low
+
+  * scheduler may oversubscribe node with exiting subjob
+  * miscellaneous maintenance fixes
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 1 Oct 2019 11:30:00 +0100
+ 
+openpbs-meta (19.0.0-6+DEBIAN_VERSION) unstable; urgency=low
+
+  * negative resource support optimization 2
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 16 Aug 2019 11:30:00 +0100
+ 
+openpbs-meta (19.0.0-5+DEBIAN_VERSION) unstable; urgency=low
+
+  * negative resource support optimization
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 16 Aug 2019 11:30:00 +0100
+ 
+openpbs-meta (19.0.0-4+DEBIAN_VERSION) unstable; urgency=low
+
+  * initgroups fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 18 Jun 2019 11:30:00 +0100
+ 
+openpbs-meta (19.0.0-3+DEBIAN_VERSION) unstable; urgency=low
+
+  * upstream merge
+  * fix task lost on upgrade
+  * proper maintenance feature
+  * sched performance improvement
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 11 Jun 2019 11:30:00 +0100
+ 
+openpbs-meta (19.0.0-2+DEBIAN_VERSION) unstable; urgency=low
+
+  * allow more chars in job name
+  * printjob_svr does not iterate attributes
+  * small memory leak
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 27 Feb 2019 11:30:00 +0100
+
+openpbs-meta (19.0.0-1+DEBIAN_VERSION) unstable; urgency=low
+
+  * major upgrade
+  * several bug fixes
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 13 Feb 2019 11:30:00 +0100
+
+openpbs-meta (18.1.0-3+DEBIAN_VERSION) unstable; urgency=low
+
+  * subjob limits fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 23 Nov 2017 11:30:00 +0100
+
+openpbs-meta (18.1.0-2+DEBIAN_VERSION) unstable; urgency=low
+
+  * arrayjobs survive server restart
+  * mom stuck fix #248703
+  * array jobs send emails #234552
+  * support for cycle interruption in scheduler #238975
+  * warning on failure in sending email #246788
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 22 May 2017 11:30:00 +0100
+
+openpbs-meta (18.1.0-1+DEBIAN_VERSION) unstable; urgency=low
+
+  * environment varible fix #206744
+  * full save job on mom exit #207190
+  * safe stop is noticed in momctl insted of log msg #225764
+  * notice on qsub read from stdin #225905
+  * momctl -c ported from torque #233220
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 14 Feb 2017 11:30:00 +0100
+
+openpbs-meta (17.1.0-8+DEBIAN_VERSION) unstable; urgency=low
+
+  * rollback to 17.1.0-6
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 30 Nov 2017 11:30:00 +0100
+ 
+openpbs-meta (17.1.0-7+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+  * state_count queued jobs count goes negative after server restart
+  * safe stop signalized through momctl insted of log message
+  * limits.pbs_mom treated as conf file
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 28 Nov 2017 11:30:00 +0100
+ 
+openpbs-meta (17.1.0-6+DEBIAN_VERSION) unstable; urgency=low
+
+  * hotfix #225097
+  * libopenpbs - exact version dependency
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 3 Nov 2017 11:30:00 +0100
+ 
+openpbs-meta (17.1.0-5+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix double free in mom
+  * merge upstream
+    - soft walltime
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 1 Nov 2017 11:30:00 +0100
+ 
+openpbs-meta (17.1.0-4+DEBIAN_VERSION) unstable; urgency=low
+
+  * mom job limit comparison fix
+  * nagative resources support
+  * add get_job_principal prototype #220734
+  * fix attribute "Assigned CPU Count" in momctl
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 2 Oct 2017 11:30:00 +0100
+
+openpbs-meta (17.1.0-3+DEBIAN_VERSION) unstable; urgency=low
+
+  * secure connection fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 15 Sep 2017 11:30:00 +0100
+ 
+openpbs-meta (17.1.0-2+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+  * scheduler leaks fixed
+  * server leaks fixed
+  * secure connection fixed
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 14 Sep 2017 11:30:00 +0100
+ 
+openpbs-meta (17.1.0-1+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+  * fix pbslibs dependencies
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 31 Jul 2017 11:30:00 +0100
+
+openpbs-meta (14.0.1-28+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+  * add moms to acl is optionable
+  * no rewriting of KRB5CCNAME on sisters
+  * fix pbslibs dependencies
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 18 Jun 2017 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-27+DEBIAN_VERSION) unstable; urgency=low
+
+  * auto add moms to acl
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 10 May 2017 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-26+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+  * no enforcement on exclhost
+  * fix lib dependencies
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 9 May 2017 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-24+DEBIAN_VERSION) unstable; urgency=low
+
+  * new sched attribute only_explicit_psets
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 20 Apr 2017 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-23+DEBIAN_VERSION) unstable; urgency=low
+
+  * fqdn in resources_available.host
+  * set exec_host2 as a read only attribute
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 27 Mar 2017 11:30:00 +0100
+
+openpbs-meta (14.0.1-22+DEBIAN_VERSION) unstable; urgency=low
+
+  * log RESOURCE_KILL
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 15 Mar 2017 11:30:00 +0100
+
+
+openpbs-meta (14.0.1-21+DEBIAN_VERSION) unstable; urgency=low
+
+  * mom restart improved
+  * job array krb_princ fix #195534
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 9 Mar 2017 11:30:00 +0100
+
+openpbs-meta (14.0.1-20+DEBIAN_VERSION) unstable; urgency=low
+
+  * log task exit value
+  * add pbs.PERIODIC constant
+  * mom restart wait for delete job
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 1 Mar 2017 11:30:00 +0100
+
+openpbs-meta (14.0.1-19+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 20 Feb 2017 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-18+DEBIAN_VERSION) unstable; urgency=low
+
+  * multiple fairshare tree support
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 24 Jan 2017 11:30:00 +0100
+
+openpbs-meta (14.0.1-17+DEBIAN_VERSION) unstable; urgency=low
+
+  * queue comment
+  * acl_groups fix 
+  * merge upstream
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 5 Dec 2016 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-16+DEBIAN_VERSION) unstable; urgency=low
+
+  * call DIS_tcp_setup properly
+  * merge latest openpbs  
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 5 Dec 2016 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-15+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix double free v req_gssauthenuser()
+  * momctl
+  * safe mom restart
+  * merge latest openpbs  
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 25 Nov 2016 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-14+DEBIAN_VERSION) unstable; urgency=low
+
+  * pbsdsh fix
+  * merge latest openpbs  
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 11 Nov 2016 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-13+DEBIAN_VERSION) unstable; urgency=low
+
+  * hook_output.env initialization fix
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 9 Nov 2016 11:30:00 +0100
+ 
+openpbs-meta (14.0.1-12+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest openpbs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 7 Nov 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-11+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest openpbs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 13 Oct 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-10+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest openpbs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Thu, 29 Sep 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-9+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest openpbs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 26 Sep 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-8+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest openpbs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 19 Sep 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-7+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest openpbs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 14 Sep 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-6+DEBIAN_VERSION) unstable; urgency=low
+
+  * merge latest openpbs
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Sep, 6 Sep 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-5+DEBIAN_VERSION) unstable; urgency=low
+
+  * Use dedicated job attribute for job host
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 24 Jul 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-4+DEBIAN_VERSION) unstable; urgency=low
+
+  * Fixes for kerberos
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 24 Jul 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-3+DEBIAN_VERSION) unstable; urgency=low
+
+  * kerberos access features
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 23 Jul 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-2+DEBIAN_VERSION) unstable; urgency=low
+
+  * kerberos support
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 19 Jul 2016 11:30:00 +0100
+ 
+openpbs-meta (14.1.0-1+DEBIAN_VERSION) unstable; urgency=low
+
+  * init packages
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Fri, 5 Jul 2016 11:30:00 +0100

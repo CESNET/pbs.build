@@ -1,0 +1,5 @@
+#!/bin/bash
+
+/usr/libexec/pbs_postinstall server
+
+#DEBHELPER#
