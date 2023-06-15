@@ -32,8 +32,8 @@ Package: openpbs-server
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), expat, libedit2, postgresql, postgresql-contrib, python3, sudo, tcl, tk, libical3, libpq-dev
-Conflicts: openpbs-execution, openpbs-client, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
-Description: PBS Professional® is a fast, powerful workload manager and
+Conflicts: openpbs-execution, openpbs-client, pbs, pbs-mom, pbs-cmds, pbspro-server, pbspro-execution, pbspro-client, libpbspro, libpbspro-dev
+Description: Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
  HPC clusters, clouds and supercomputers.
@@ -45,8 +45,8 @@ Package: openpbs-execution
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), expat, python3
-Conflicts: openpbs-server, openpbs-client, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
-Description: PBS Professional® is a fast, powerful workload manager and
+Conflicts: openpbs-server, openpbs-client, pbs, pbs-mom, pbs-cmds, pbspro-server, pbspro-execution, pbspro-client, libpbspro, libpbspro-dev
+Description: Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
  HPC clusters, clouds and supercomputers.
@@ -58,9 +58,9 @@ Description: PBS Professional® is a fast, powerful workload manager and
 Package: openpbs-client
 Section: utils
 Architecture: any
-Conflicts: openpbs-server, openpbs-execution, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
+Conflicts: openpbs-server, openpbs-execution, pbs, pbs-mom, pbs-cmds, pbspro-server, pbspro-execution, pbspro-client, libpbspro, libpbspro-dev
 Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), python
-Description: PBS Professional® is a fast, powerful workload manager and
+Description:Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
  HPC clusters, clouds and supercomputers.
@@ -73,8 +73,8 @@ Section: libs
 Provides: libopenpbs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Conflicts: pbs, pbs-mom, pbs-cmds
-Description: PBS Professional® is a fast, powerful workload manager and
+Conflicts: pbs, pbs-mom, pbs-cmds, libpbspro, libpbspro-dev
+Description: Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
  HPC clusters, clouds and supercomputers.
@@ -87,8 +87,8 @@ Section: libdevel
 Provides: libopenpbs-dev
 Architecture: any
 Depends: libopenpbs (= ${binary:Version}), heimdal-multidev, ${shlibs:Depends}, ${misc:Depends}
-Conflicts: pbs, pbs-mom, pbs-cmds
-Description: PBS Professional® is a fast, powerful workload manager and
+Conflicts: pbs, pbs-mom, pbs-cmds, libpbspro, libpbspro-dev
+Description: Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
  HPC clusters, clouds and supercomputers.
