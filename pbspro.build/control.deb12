@@ -13,7 +13,7 @@ Build-Depends: autotools-dev (>= 20100122.1~),
                perl,
                postgresql-server-dev-all,
                postgresql-contrib,
-               python-dev,
+               python3-dev,
                tcl-dev,
                tk-dev,
                swig,
@@ -59,7 +59,7 @@ Package: pbspro-client
 Section: utils
 Architecture: any
 Conflicts: pbspro-server, pbspro-execution, pbs, pbs-mom, pbs-cmds, torque-meta-common, torque-meta-server, torque-meta-pam, torque-meta-client, torque-meta-mom, torque-meta-client-x11
-Depends: ${shlibs:Depends}, ${misc:Depends}, libpbspro (= ${binary:Version}), python
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpbspro (= ${binary:Version}), python3
 Description: PBS Professional® is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for

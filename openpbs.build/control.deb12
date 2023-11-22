@@ -13,7 +13,7 @@ Build-Depends: autotools-dev (>= 20100122.1~),
                perl,
                postgresql-server-dev-all,
                postgresql-contrib,
-               python-dev,
+               python3-dev,
                tcl-dev,
                tk-dev,
                swig,
@@ -59,7 +59,7 @@ Package: openpbs-client
 Section: utils
 Architecture: any
 Conflicts: openpbs-server, openpbs-execution, pbs, pbs-mom, pbs-cmds, pbspro-server, pbspro-execution, pbspro-client, libpbspro, libpbspro-dev
-Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), python
+Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), python3
 Description: Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
