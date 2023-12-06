@@ -240,7 +240,9 @@ install: build
 	rm -rf debian/libopenpbs/usr/sbin/*
 	rm -rf debian/libopenpbs/usr/share/
 	rm -rf debian/libopenpbs/usr/unsupported/
+	rm -rf debian/libopenpbs/usr/lib/liblicensing.so
 	rm -rf debian/libopenpbs/usr/lib/libpbs.so
+	rm -rf debian/libopenpbs/usr/lib/libpbsdb.so
 
 	rm -rf debian/libopenpbs/usr/lib/pkgconfig/
 	rm -rf debian/libopenpbs/lib/
@@ -259,6 +261,8 @@ install: build
 	rm -rf debian/libopenpbs-dev/usr/lib/MPI/
 	rm -rf debian/libopenpbs-dev/usr/lib/python/
 	rm -rf debian/libopenpbs-dev/usr/lib/systemd/
+	rm -rf debian/libopenpbs-dev/usr/lib/libauth_gss.so
+	rm -rf debian/libopenpbs-dev/usr/lib/libauth_munge.so
 	rm -rf debian/libopenpbs-dev/usr/lib/*.so.0
 	rm -rf debian/libopenpbs-dev/usr/lib/*.so.0.0.0
 	rm -rf debian/libopenpbs-dev/usr/libexec/
