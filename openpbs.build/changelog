@@ -1,3 +1,13 @@
+openpbs-meta (23.06.06-3+DEBIAN_VERSION) unstable; urgency=low
+
+  * server acl_hosts supports subnets
+  * gss/krb access is checked by acl_krb_realms only and ignores acl_hosts
+  * process the_post_connect_handler error in tpp
+  * use cJSON for json output generation
+  * prevent prerun substate on server init
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 12 Dec 2023 11:30:00 +0100
+
 openpbs-meta (23.06.06-2+DEBIAN_VERSION) unstable; urgency=low
 
   * fix krb libs order and dependency
