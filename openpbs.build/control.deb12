@@ -20,7 +20,8 @@ Build-Depends: autotools-dev (>= 20100122.1~),
                libexpat-dev,
                libssl-dev,
                libxext-dev,
-               libxft-dev
+               libxft-dev,
+               libcjson-dev
 Standards-Version: 3.8.4
 DM-Upload-Allowed: yes
 XS-Autobuild: yes
@@ -31,7 +32,7 @@ Homepage: http://openpbs.org/
 Package: openpbs-server
 Section: utils
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), expat, libedit2, postgresql, postgresql-contrib, python3, sudo, tcl, tk, libical3, libpq-dev
+Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), expat, libedit2, postgresql, postgresql-contrib, python3, sudo, tcl, tk, libical3, libpq-dev, libcjson1
 Conflicts: openpbs-execution, openpbs-client, pbs, pbs-mom, pbs-cmds, pbspro-server, pbspro-execution, pbspro-client, libpbspro, libpbspro-dev
 Description: Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
@@ -44,7 +45,7 @@ Description: Open PBS is a fast, powerful workload manager and
 Package: openpbs-execution
 Section: utils
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), expat, python3
+Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), expat, python3, libcjson1
 Conflicts: openpbs-server, openpbs-client, pbs, pbs-mom, pbs-cmds, pbspro-server, pbspro-execution, pbspro-client, libpbspro, libpbspro-dev
 Description: Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
@@ -59,7 +60,7 @@ Package: openpbs-client
 Section: utils
 Architecture: any
 Conflicts: openpbs-server, openpbs-execution, pbs, pbs-mom, pbs-cmds, pbspro-server, pbspro-execution, pbspro-client, libpbspro, libpbspro-dev
-Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), python3
+Depends: ${shlibs:Depends}, ${misc:Depends}, libopenpbs (= ${binary:Version}), python3, libcjson1
 Description: Open PBS is a fast, powerful workload manager and
  job scheduler designed to improve productivity, optimize
  utilization & efficiency, and simplify administration for
