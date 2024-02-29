@@ -1,3 +1,9 @@
+openpbs-meta (23.06.06-4+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix state_aux type in pbs_python
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 29 Feb 2024 11:30:00 +0100
+
 openpbs-meta (23.06.06-3+DEBIAN_VERSION) unstable; urgency=low
 
   * server acl_hosts supports subnets
@@ -6,7 +12,7 @@ openpbs-meta (23.06.06-3+DEBIAN_VERSION) unstable; urgency=low
   * use cJSON for json output generation
   * prevent prerun substate on server init
 
- -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 12 Dec 2023 11:30:00 +0100
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 27 Feb 2024 11:30:00 +0100
 
 openpbs-meta (23.06.06-2+DEBIAN_VERSION) unstable; urgency=low
 
