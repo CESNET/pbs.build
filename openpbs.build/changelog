@@ -1,3 +1,12 @@
+openpbs-meta (23.06.06-5+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix (un)setting node attributes/resources from hook
+  * non-consumable gpu capabilities
+  * fix possible job rerun over scheduled reservation/top job
+  * Fix scheduling bug when last select resource in select is 0
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 20 Mar 2024 11:30:00 +0100
+
 openpbs-meta (23.06.06-4+DEBIAN_VERSION) unstable; urgency=low
 
   * fix state_aux type in pbs_python
