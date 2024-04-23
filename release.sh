@@ -4,7 +4,7 @@
 export LC_ALL=C
 export LANG=C
 
-pbs_name="pbspro"
+pbs_name="openpbs"
 
 # Cleanup
 rm -f debian
