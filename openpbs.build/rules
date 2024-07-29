@@ -243,6 +243,7 @@ install: build
 	rm -rf debian/libopenpbs/usr/lib/liblicensing.so
 	rm -rf debian/libopenpbs/usr/lib/libpbs.so
 	rm -rf debian/libopenpbs/usr/lib/libpbsdb.so
+	rm -rf debian/libopenpbs/usr/lib/libpbsjson.so
 
 	rm -rf debian/libopenpbs/usr/lib/pkgconfig/
 	rm -rf debian/libopenpbs/lib/
