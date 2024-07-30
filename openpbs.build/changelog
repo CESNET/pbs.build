@@ -1,3 +1,16 @@
+openpbs-meta (23.06.06-8+DEBIAN_VERSION) unstable; urgency=low
+
+  * tmp site_check_user_map() fix
+  * qrun request can miss its scheduler in multi-sched environment
+  * fix used resc updates from hook results in walltime zero at the multinode job end
+  * fix deleting Exit_status on job rerun
+  * Fix job.rerun() in mom hook epilogue/preterm
+  * preventing child hang from inherited krb lock from parent process
+  * allow blocked signals while scheduler reconnecting to server
+  * momctl kill msg support changes (not used)
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 30 Jul 2024 11:30:00 +0100
+
 openpbs-meta (23.06.06-7+DEBIAN_VERSION) unstable; urgency=low
 
   * improved acl hosts on queue
