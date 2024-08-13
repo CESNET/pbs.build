@@ -1,3 +1,10 @@
+openpbs-meta (23.06.06-9+DEBIAN_VERSION) unstable; urgency=low
+
+  * preventing child hang from inherited krb lock from parent process 2
+  * internal error if duplicity jobid occurs while deleting on the server side
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Tue, 13 Aug 2024 11:30:00 +0100
+
 openpbs-meta (23.06.06-8+DEBIAN_VERSION) unstable; urgency=low
 
   * tmp site_check_user_map() fix
