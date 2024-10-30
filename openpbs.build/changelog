@@ -1,3 +1,13 @@
+openpbs-meta (23.06.06-10+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix user site check with gss/krb
+  * qdel special cases -> server core dump
+  * pbsdsh to support -h hostname
+  * Allow to override the default scp flags
+  * check for cr,lf in script on job submit
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 30 Oct 2024 11:30:00 +0100
+
 openpbs-meta (23.06.06-9+DEBIAN_VERSION) unstable; urgency=low
 
   * preventing child hang from inherited krb lock from parent process 2
