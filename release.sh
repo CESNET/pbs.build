@@ -44,6 +44,9 @@ if [ -r /etc/debian_version ]; then
 	elif [ "$major_ver" == "bookworm/sid" ]; then
 		os_codename="$(lsb_release -c | awk '{print $2}')";
 		os_version=0;
+	elif [ "$major_ver" == "trixie/sid" ]; then
+		os_codename="$(lsb_release -c | awk '{print $2}')";
+		os_version=0;
 	fi
 fi
 
@@ -86,6 +89,11 @@ fi
 
 if [ "x$os_codename" == "xjammy" ]; then
 	mv ${BUILDDIR}/control.jammy ${BUILDDIR}/control
+	sed -i -- 's/+DEBIAN_VERSION//g' ${BUILDDIR}/changelog
+fi
+
+if [ "x$os_codename" == "xnoble" ]; then
+	mv ${BUILDDIR}/control.noble ${BUILDDIR}/control
 	sed -i -- 's/+DEBIAN_VERSION//g' ${BUILDDIR}/changelog
 fi
 
