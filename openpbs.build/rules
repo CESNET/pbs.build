@@ -137,7 +137,7 @@ install: build
 	sed -i '/GuessMainPID=no/d' debian/openpbs-execution.service
 	sed -i '/\[Service\]/a PIDFile=\/var\/spool\/pbs\/mom_priv\/mom.lock' debian/openpbs-execution.service
 	sed -i '/\[Service\]/a KillMode=process' debian/openpbs-execution.service
-	sed -i '/\[Service\]/a StartLimitIntervalSec=0' debian/openpbs-execution.service
+	sed -i '/\[Service\]/a StartLimitInterval=0' debian/openpbs-execution.service
 	sed -i '/\[Service\]/a StartLimitBurst=25' debian/openpbs-execution.service
 	sed -i '/\[Service\]/a RestartSec=5' debian/openpbs-execution.service
 	sed -i 's/Restart=.*/Restart=always/g' debian/openpbs-execution.service
@@ -157,6 +157,7 @@ install: build
 	rm -rf debian/openpbs-server/usr/sbin/pbs_iff
 
 	rm -rf debian/openpbs-server/usr/lib/pkgconfig/
+	rm -rf debian/openpbs-server/lib/
 
 ######## openpbs-execution
 	$(MAKE) -C debian/build/openpbs install DESTDIR=$(CURDIR)/debian/openpbs-execution
@@ -190,6 +191,7 @@ install: build
 	rm -rf debian/openpbs-execution/usr/sbin/pbs_iff
 
 	rm -rf debian/openpbs-execution/usr/lib/pkgconfig/
+	rm -rf debian/openpbs-execution/lib/
 
 ######## openpbs-client
 	$(MAKE) -C debian/build/openpbs install DESTDIR=$(CURDIR)/debian/openpbs-client
