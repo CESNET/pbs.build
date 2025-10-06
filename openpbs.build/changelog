@@ -1,3 +1,12 @@
+openpbs-meta (23.06.06-11+DEBIAN_VERSION) unstable; urgency=low
+
+  * support for reserved resources
+  * rezervations with multi sched
+  * log exec_vnode on job run
+  * fix match_resource() type in scheduler
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Mon, 6 Oct 2025 11:30:00 +0100
+
 openpbs-meta (23.06.06-10+DEBIAN_VERSION) unstable; urgency=low
 
   * fix user site check with gss/krb
