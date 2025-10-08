@@ -1,3 +1,10 @@
+openpbs-meta (23.06.06-12+DEBIAN_VERSION) unstable; urgency=low
+
+  * fix users() to compare full username
+  * remove useless krb5_cc_new_unique()
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 8 Oct 2025 11:30:00 +0100
+
 openpbs-meta (23.06.06-11+DEBIAN_VERSION) unstable; urgency=low
 
   * support for reserved resources
