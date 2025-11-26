@@ -1,3 +1,11 @@
+openpbs-meta (23.06.06-13+DEBIAN_VERSION) unstable; urgency=low
+
+  * clear estimates once a job loses the top job status
+  * make show_nonprint_chars() working with non-ASCII chars
+  * prevent user from interrupting start of the job
+
+ -- Vaclav Chlumsky <vchlumsky@cesnet.cz>  Wed, 26 Nov 2025 11:30:00 +0100
+
 openpbs-meta (23.06.06-12+DEBIAN_VERSION) unstable; urgency=low
 
   * fix users() to compare full username
